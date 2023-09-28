@@ -1,0 +1,10 @@
+.myImage {
+    border-radius: 50%;
+    width: 200px;
+}
+
+#cv-form {}
+
+#cv-template {
+    display: none;
+}

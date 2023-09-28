@@ -1,0 +1,76 @@
+<!-- create following container in html page
+	1. info container
+	2. login container
+	3. sign up container
+	4. verification container
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script src= "https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+	<script type="text/javascript" src="config/connection.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<script type="text/javascript" src="js/index.js"></script>
+</head>
+<body>
+	<div id="header_con">
+		<p id="header_name"></p>
+	</div>
+	<div id="info_con">
+		<p id="info_msg"><strong>WELCOME</strong></p>
+	</div>
+	<div id="verification_con">
+		<p>CLICK BELOW TO SEND VERIFICATION E-MAIL</p>
+		<button onclick="verify()">Verify</button>
+	</div>
+	<div id="signup_con">
+		<h1>This is signup section</h1>
+		<input type="text" id="s_userid">
+		<input type="password" id="s_password">
+		<button onclick="signup()">create account</button>
+	</div>
+	<div id="login_con">
+		<h1 id="loginheader_con">This is login section</h1>
+		<input type="text" id="l_userid" placeholder="enter your emailid " title="exampleabc@gmail.com"><br>
+		<input type="password" id="l_password" placeholder="enter your password" title="enter more than 6 digits"><br>
+		
+		 <button id="login_btn" onclick="login()">Login</button><br>
+		<button id="new_btn"  onclick="newuser()">New to the Application? Create Account</button><br>
+		
+	</div>
+	
+</body>
+
+<script type="text/javascript">
+		
+		var authentication_obj=firebase.auth();
+		authentication_obj.onAuthStateChanged(function(user){
+			if(user)
+			{
+				//if user is active find out he/she has verified his/her email or not
+				var status=user.emailVerified;
+				if(status==false)
+				{
+					document.getElementById('login_con').style.display="none";
+					document.getElementById('signup_con').style.display="none";
+					document.getElementById('verification_con').style.display="block";
+					
+
+				}
+				else{
+					window.location.href="../tie.html";
+				}
+			}
+			else{
+					
+					
+			}
+			
+			
+
+		});
+	</script>
+</html>

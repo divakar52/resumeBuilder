@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src= "https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+	<script type="text/javascript" src="../config/connection.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<script type="text/javascript" src="../js/index.js"></script>
+	<title></title>
+</head>
+<body>
+	<div id="header_con">
+		<h1>WELCOME TO DASHBOARD</h1>
+	</div>
+	<div id="nav_con">
+		<p id="a_user">Active user</p>
+		<button onclick="logout()">Logout</button>
+	</div>
+
+</body>
+<script type="text/javascript">
+		var authentication_obj=firebase.auth();
+		authentication_obj.onAuthStateChanged(function(user){
+			if(user)
+			{
+				var emailid=user.email;
+				//set the emailid into the paragraph
+				document.getElementById('a_user').innerHTML="WELCOME,"+emailid;
+				
+			}
+			else{
+				window.location.href="../index.html";
+			}
+			
+			
+
+		});
+	</script>
+</html>
